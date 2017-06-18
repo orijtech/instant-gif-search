@@ -1,0 +1,28 @@
+<HTML>
+  <head>
+    <script type="text/javascript" src="https://storage.googleapis.com/realsp/rsp.min.js"></script>
+  </head>
+
+  <body>
+    <input id="searchInput"></input>
+    <br />
+    <div id="contentHere">
+    </div>
+
+    <script>
+      var contentHere = document.getElementById("contentHere");
+      var resp = new Resp({
+	"apiKey": "7ced59dc-30a3-4b11-b3e4-a6b35055dda9",
+	"itemId": "searchInput",
+	"services": {"gifs": {"only_processed_html": true}},
+	"onMessage": function onData(data) {
+	  data.results.forEach(function(datum) {
+	    if (datum.service === 'gifs') {
+	      contentHere.innerHTML = datum.processed_html;
+	    }
+	  });
+	}
+      })
+    </script>
+  </body>
+</HTML>
